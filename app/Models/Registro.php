@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models\Core;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Store extends Model
+class Registro extends Model
 {
     use HasFactory;
 
-    protected $table = 'store';
+    protected $table = 'registro';
     protected $primaryKey = 'id';
 
     /**

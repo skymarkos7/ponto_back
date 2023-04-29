@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Core\Store;
 use Illuminate\Http\Request;
 
-class StoreContrller extends Controller
+class RegisterContrller extends Controller
 {
     /**
      * Display a listing of the resource.

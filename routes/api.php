@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Core\StoreContrller;
+use App\Http\Controllers\Core\RegisterContrller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
-Route::get('store', [StoreContrller::class, 'index']);
-Route::post('store', [StoreContrller::class, 'store']);
-Route::put('store/{id}', [StoreContrller::class, 'update']);
-Route::delete('store/{id}', [StoreContrller::class, 'destroy']);
+Route::get('registros', [RegisterContrller::class, 'index']);
+Route::post('registrar', [RegisterContrller::class, 'store']);
+Route::put('store/{id}', [RegisterContrller::class, 'update']);
+Route::delete('store/{id}', [RegisterContrller::class, 'destroy']);
 
 
 // Route::group([
@@ -33,10 +33,10 @@ Route::delete('store/{id}', [StoreContrller::class, 'destroy']);
 
 // ], function ($router) {
 //     Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
-//     Route::get('store', [StoreContrller::class, 'index']);
-//     Route::post('store', [StoreContrller::class, 'store']);
-//     Route::put('store/{id}', [StoreContrller::class, 'update']);
-//     Route::delete('store/{id}', [StoreContrller::class, 'destroy']);
+//     Route::get('store', [RegisterContrller::class, 'index']);
+//     Route::post('store', [RegisterContrller::class, 'store']);
+//     Route::put('store/{id}', [RegisterContrller::class, 'update']);
+//     Route::delete('store/{id}', [RegisterContrller::class, 'destroy']);
 
 // });
 
