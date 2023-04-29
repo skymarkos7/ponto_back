@@ -26,15 +26,19 @@ class RegisterContrller extends Controller
     public function registrar(Request $request)
     {
         $data = $request->all();
+        if(isset($data['nome']) && isset($data['email']) && isset($data['cpf']) && isset($data['conhecimentos'])) {
+            $cpf = Registro::where('cpf', $data['cpf'])->get(); // traz do banco os registros com o cpf igual ao que foi passado
+            if(count($cpf) > 0) {
+                $data = 'Este cpf já está cadastrado';
+            } else {
+                Registro::create($data); // cria o registro no bacno
+                $data = 'Dados inseridos com sucesso';
+            }
 
-        $cpf = Registro::where('cpf', $data['cpf'])->get(); // traz do banco os registros com o cpf igual ao que foi passado
-
-        if(count($cpf) > 0){
-            $data = 'Este cpf já está cadastrado';
-        }else{
-            Registro::create($data); // cria o registro no bacno
-            $data = 'Dados inseridos com sucesso';
+        } else {
+            $data = "Preencha todos os campos";
         }
+
 
 
         return response()->json(['data' => $data]);
