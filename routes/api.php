@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Core\RegisterController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,23 +38,4 @@ Route::get('detalhes/{id}', [RegisterController::class, 'detalhes']);
 //     Route::put('store/{id}', [RegisterContrller::class, 'update']);
 //     Route::delete('store/{id}', [RegisterContrller::class, 'destroy']);
 
-// });
-
-
-
-// Route::post('/login', function (Request $request) {
-//     $credentials = $request->only('email', 'password');
-
-//     if (! $token = auth()->attempt($credentials)) {
-//         // return response()->json(['error' => 'Unauthorized'], 401);
-//         abort(401);
-//     }
-
-//     return response()->json([
-//         'data' => [
-//             'token' => $token,
-//         'token_type' => 'bearer',
-//         'expires_in' => auth()->factory()->getTTL() * 60
-//         ]
-//     ]);
 // });
