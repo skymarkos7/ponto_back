@@ -9,7 +9,7 @@ class Registro extends Model
 {
     use HasFactory;
 
-    protected $table = 'registro';
+    protected $table = 'registros';
     protected $primaryKey = 'id';
 
     /**

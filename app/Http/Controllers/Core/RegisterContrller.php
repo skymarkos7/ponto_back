@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Models\Core\Store;
+use App\Models\Registro;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
@@ -22,22 +23,21 @@ class RegisterContrller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function registrar(Request $request) // fazer inserção
+    public function registrar(Request $request)
     {
         $data = $request->all(); // pega todos os dados da requisição
 
-        $banco = Store::where('cpf', $data['cpf'])->get();
+        $cpf = Registro::where('cpf', $data['cpf'])->get(); // traz do banco os registros com o cpf igual ao que foi passado
 
-
-
-        if(count($banco) > 0){
-            $banco = 'tem mais de zero';
+        if(count($cpf) > 0){
+            $data = 'Este cpf já está cadastrado';
+        }else{
+            Registro::create($data); // cria o registro
+            $data = 'Dados inseridos com sucesso';
         }
 
 
-        // Store::create($data); // cria o registro
-
-        return response()->json(['data' => $banco]);
+        return response()->json(['data' => $data]);
 
     }
 
