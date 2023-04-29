@@ -15,9 +15,10 @@ class RegisterContrller extends Controller
      */
     public function index()
     {
-        $data = Registro::all();
+        
+        $users = Registro::orderBy('nome', 'ASC')->get();
 
-        return response()->json(['data' => $data]);
+        return response()->json(['data' => $users]);
     }
 
     /**
