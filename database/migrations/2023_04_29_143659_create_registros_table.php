@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
-            $table->string('email', 50)->nullable();
-            $table->string('cpf', 20)->nullable();
+            $table->string('email', 100);
+            $table->string('cpf', 15);
             $table->string('celular', 30)->nullable();
-            $table->string('conhecimentos', 255)->nullable();
+            $table->string('conhecimentos', 255);
             $table->timestamps();
         });
     }

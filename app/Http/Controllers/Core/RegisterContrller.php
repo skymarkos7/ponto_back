@@ -11,28 +11,28 @@ use Illuminate\Http\Request;
 class RegisterContrller extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna todos os registros.
      */
     public function index()
     {
-        $data = Store::all();
+        $data = Registro::all();
 
         return response()->json(['data' => $data]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Salva os dados no banco. if cpf exist, return aviso
      */
     public function registrar(Request $request)
     {
-        $data = $request->all(); // pega todos os dados da requisição
+        $data = $request->all();
 
         $cpf = Registro::where('cpf', $data['cpf'])->get(); // traz do banco os registros com o cpf igual ao que foi passado
 
         if(count($cpf) > 0){
             $data = 'Este cpf já está cadastrado';
         }else{
-            Registro::create($data); // cria o registro
+            Registro::create($data); // cria o registro no bacno
             $data = 'Dados inseridos com sucesso';
         }
 
