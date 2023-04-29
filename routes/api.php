@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::get('registros', [RegisterContrller::class, 'index']);
-Route::post('registrar', [RegisterContrller::class, 'store']);
+Route::post('registrar', [RegisterContrller::class, 'registrar']);
 Route::put('store/{id}', [RegisterContrller::class, 'update']);
 Route::delete('store/{id}', [RegisterContrller::class, 'destroy']);
 

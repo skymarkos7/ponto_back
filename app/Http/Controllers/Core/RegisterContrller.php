@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Models\Core\Store;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
 class RegisterContrller extends Controller
@@ -21,15 +22,22 @@ class RegisterContrller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) // fazer inserção
+    public function registrar(Request $request) // fazer inserção
     {
-        $data = $request->all(); // pega todos os dados
+        $data = $request->all(); // pega todos os dados da requisição
+
+        $banco = Store::where('cpf', $data['cpf'])->get();
 
 
 
-        Store::create($data); // cria o registro
+        if(count($banco) > 0){
+            $banco = 'tem mais de zero';
+        }
 
-        return response()->json(['data' => $data]);
+
+        // Store::create($data); // cria o registro
+
+        return response()->json(['data' => $banco]);
 
     }
 
