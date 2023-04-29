@@ -22,9 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::get('registros', [RegisterController::class, 'index']);
 Route::post('registrar', [RegisterController::class, 'registrar']);
-Route::get('validar', [RegisterController::class, 'validar']);
-Route::put('store/{id}', [RegisterController::class, 'update']);
-Route::delete('store/{id}', [RegisterController::class, 'destroy']);
+Route::put('validar/{id}', [RegisterController::class, 'validar']);
+Route::get('detalhes/{id}', [RegisterController::class, 'detalhes']);
 
 
 // Route::group([

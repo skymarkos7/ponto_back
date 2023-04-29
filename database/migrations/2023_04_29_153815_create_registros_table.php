@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('celular', 30)->nullable();
             $table->string('conhecimentos', 255);
             $table->boolean('validacao', 5)->nullable();
-            $table->string('datavalidacao', 30)->nullable();
+            $table->string('datavalidacao', 100)->nullable();
             $table->timestamps();
         });
     }

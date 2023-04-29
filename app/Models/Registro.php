@@ -22,5 +22,6 @@ class Registro extends Model
         'celular',
         'conhecimentos',
         'validacao',
+        'datavalidacao',
     ];
 }

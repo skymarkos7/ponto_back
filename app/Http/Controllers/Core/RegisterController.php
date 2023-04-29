@@ -22,63 +22,85 @@ class RegisterController extends Controller
     }
 
     /**
-     * Salva os dados no banco. if cpf exist, return aviso
+     * Registra no banco. se cpf não existir
      */
     public function registrar(Request $request)
     {
         $data = $request->all();
         if(isset($data['nome']) && isset($data['email']) && isset($data['cpf']) && isset($data['conhecimentos'])) {
-            $cpf = Registro::where('cpf', $data['cpf'])->get(); // traz do banco os registros com o cpf igual ao que foi passado
+            $cpf = Registro::where('cpf', $data['cpf'])->get();
             if(count($cpf) > 0) {
                 $data = 'Este cpf já está cadastrado';
             } else {
-                $data['validacao'] = true;
+                $data['validacao'] = false;
                 // $data['datavalidacao'] = date('Y-m-d H:i:s');
-                Registro::create($data); // cria o registro no bacno
-                // $data = 'Dados inseridos com sucesso';
+                Registro::create($data);
+
             }
 
         } else {
             $data = "Preencha todos os campos";
         }
 
-
-
         return response()->json(['data' => $data]);
-
     }
+
 
     /**
-     * Display the specified resource.
+     * Detalhes de um colaborador.
      */
-    public function validar(string $id) // faz de um único item
+    public function detalhes($id)
     {
+        $data = Registro::find($id);
+        return $data;
+    }
 
-        return "ssss";
+
+    /**
+     * Validar cadastro.
+     */
+    public function validar($id) {
+
+        $banco = Registro::findOrFail($id);
+            if($banco['validacao'] == 1){
+                $data['validacao'] = 0;
+            }
+            if($banco['validacao'] == 0){
+                $data['validacao'] = 1;
+                $data['datavalidacao'] = date('Y-m-d H:i:s');
+            }
+
+            $banco->update($data);
+
+        return response()->json(['msg' => 'Atualizado com sucesso', 'data' => $data]);
+
 
     }
+
+    // public function update(Request $request, $id) // faz de um único item
+    // {
+    //     $dataRequest = $request->all(); // pega tudo
+    //     $data = Registro::findOrFail($id); // findOrFail é o mesmo que select*from
+    //     $data->update($dataRequest); // atualiza os dados
+
+    //     return response()->json(['msg' => 'Atualizado com sucesso', 'data' => $data]);
+
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)  // faz a atualização
-    {
-        $dataRequest = $request->all(); // pega tudo
-        $data = Store::findOrFail($id); // findOrFail é o mesmo que select*from
-        $data->update($dataRequest); // atualiza os dados
 
-        return response()->json(['msg' => 'Atualizado com sucesso', 'data' => $data]);
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) // faz a remoção
-    {
-        $data = Store::find($id);
+    // public function destroy(string $id) // faz a remoção
+    // {
+    //     $data = Store::find($id);
 
-        $data->delete();
+    //     $data->delete();
 
-        return response()->json(['msg' => 'Registro excluido', 'data' => $data]);
-    }
+    //     return response()->json(['msg' => 'Registro excluido', 'data' => $data]);
+    // }
 }
