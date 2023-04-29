@@ -8,14 +8,14 @@ use App\Models\Registro;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
-class RegisterContrller extends Controller
+class RegisterController extends Controller
 {
     /**
      * Retorna todos os registros.
      */
     public function index()
     {
-        
+
         $users = Registro::orderBy('nome', 'ASC')->get();
 
         return response()->json(['data' => $users]);
@@ -32,8 +32,10 @@ class RegisterContrller extends Controller
             if(count($cpf) > 0) {
                 $data = 'Este cpf já está cadastrado';
             } else {
+                $data['validacao'] = true;
+                // $data['datavalidacao'] = date('Y-m-d H:i:s');
                 Registro::create($data); // cria o registro no bacno
-                $data = 'Dados inseridos com sucesso';
+                // $data = 'Dados inseridos com sucesso';
             }
 
         } else {
@@ -49,8 +51,10 @@ class RegisterContrller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) // faz de um único item
+    public function validar(string $id) // faz de um único item
     {
+
+        return "ssss";
 
     }
 

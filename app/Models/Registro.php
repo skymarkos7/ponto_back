@@ -21,5 +21,6 @@ class Registro extends Model
         'cpf',
         'celular',
         'conhecimentos',
+        'validacao',
     ];
 }
