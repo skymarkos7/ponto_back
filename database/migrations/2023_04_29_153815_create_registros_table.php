@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('cpf', 15);
             $table->string('celular', 30)->nullable();
             $table->string('conhecimentos', 255);
+            $table->string('validacao', 10)->nullable();
+            $table->Datetime('data_validacao')->nullable();
             $table->timestamps();
         });
     }
