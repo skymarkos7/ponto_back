@@ -29,15 +29,16 @@ class RegisterController extends Controller
             $cpf = Registro::where('cpf', $data['cpf'])->get();
             if(count($cpf) > 0) {
 
-                $data = 'Este cpf já está cadastrado';
+                $data['msg'] = 'Este cpf já está cadastrado';
             } else {
 
                 $data['validacao'] = false;
+                $data['msg'] = 'Cadastro realizado com sucesso';
                 Registro::create($data);
             }
 
         } else {
-            $data = "Preencha todos os campos";
+            $data['msg'] = "Preencha todos os campos";
         }
 
         return response()->json(['data' => $data]);
